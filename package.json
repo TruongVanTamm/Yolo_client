@@ -1,5 +1,4 @@
 {
-  "homepage": "https://truongvantamm.github.io/Yolo_client/",
   "name": "yolo_client",
   "version": "0.1.0",
   "private": true,
@@ -64,9 +63,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "gh-pages": "^4.0.0"
   },
   "proxy": "https://yolo-server.onrender.com"
 }

@@ -16,7 +16,7 @@ function UserAPI(token) {
     if (token) {
       const getUser = async () => {
         try {
-          const res = await axios.get('/user/infor', {
+          const res = await axios.get('https://yolo-server.onrender.com/user/infor', {
             headers: { Authorization: token },
           });
           setUser(res.data);
@@ -61,7 +61,7 @@ function UserAPI(token) {
     if (check) {
       setCart([...cart, { ...product, quantity: 1 }]);
       await axios.patch(
-        '/user/addcart',
+        'https://yolo-server.onrender.com/user/addcart',
         { cart: [...cart, { ...product, quantity: 1 }] },
         {
           headers: { Authorization: token },
@@ -93,7 +93,7 @@ function UserAPI(token) {
     if (check) {
       setFavorite([...favorite, { ...product }]);
       await axios.patch(
-        '/user/addfavorite',
+        'https://yolo-server.onrender.com/user/addfavorite',
         { favorite: [...favorite, { ...product }] },
         {
           headers: { Authorization: token },
@@ -117,7 +117,7 @@ function UserAPI(token) {
   };
   const addToFavorite = async (favorite) => {
     await axios.patch(
-      '/user/addfavorite',
+      'https://yolo-server.onrender.com/user/addfavorite',
       { favorite },
       {
         headers: { Authorization: token },

@@ -13,7 +13,7 @@ function ProductsAPI() {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `/api/products?limit=${
+        `https://yolo-server.onrender.com/api/products?limit=${
           page * 6
         }&${category}&${sort}&title[regex]=${search}`
       );
@@ -25,7 +25,7 @@ function ProductsAPI() {
   useEffect(() => {
     const getSlider = async () => {
       const res = await axios.get(
-        `/api/hero-slider`
+        `https://yolo-server.onrender.com/api/hero-slider`
       );
 
       setSlider(res.data);

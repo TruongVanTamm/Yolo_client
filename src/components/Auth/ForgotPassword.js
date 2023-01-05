@@ -3,7 +3,7 @@ import axios from 'axios';
 import { isEmail } from '../utils/Validation';
 import { useAlert, types } from 'react-alert';
 import Button from '../Button/Button';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const initialState = {
   email: '',
 };
@@ -28,7 +28,10 @@ function ForgotPassword() {
     }
 
     try {
-      const res = await axios.post('/user/forgot', { email });
+      const res = await axios.post(
+        'https://yolo-server.onrender.com/user/forgot',
+        { email }
+      );
       setData({ ...data });
       return alert.show(
         <div style={{ fontSize: '12px' }}>{res.data.msg} </div>,

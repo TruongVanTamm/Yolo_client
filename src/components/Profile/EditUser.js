@@ -10,7 +10,7 @@ function EditUser() {
   const navigate = useNavigate();
   const [editUser, setEditUser] = useState([]);
   const state = useContext(GlobalState);
-  const [users,] = state.userAPI.users;
+  const [users] = state.userAPI.users;
   const [token] = state.token;
   const [checkAdmin, setCheckAdmin] = useState(false);
   const [num, setNum] = useState(0);
@@ -31,7 +31,7 @@ function EditUser() {
     try {
       if (num % 2 !== 0) {
         const res = await axios.patch(
-          `/user/update_role/${editUser._id}`,
+          `https://yolo-server.onrender.com/user/update_role/${editUser._id}`,
           {
             role: checkAdmin ? 1 : 0,
           },

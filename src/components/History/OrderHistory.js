@@ -12,14 +12,20 @@ function OrderHistory() {
     if (token) {
       const getHistory = async () => {
         if (isAdmin) {
-          const res = await axios.get('/api/payment', {
-            headers: { Authorization: token },
-          });
+          const res = await axios.get(
+            'https://yolo-server.onrender.com/api/payment',
+            {
+              headers: { Authorization: token },
+            }
+          );
           setHistory(res.data);
         } else {
-          const res = await axios.get('/user/history', {
-            headers: { Authorization: token },
-          });
+          const res = await axios.get(
+            'https://yolo-server.onrender.com/user/history',
+            {
+              headers: { Authorization: token },
+            }
+          );
           setHistory(res.data);
         }
       };

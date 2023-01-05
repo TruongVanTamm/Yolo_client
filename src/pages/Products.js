@@ -24,14 +24,18 @@ const Product = () => {
   }, []);
   useEffect(() => {
     const getProducts = async () => {
-      const res = await axios.get(`/api/products`);
+      const res = await axios.get(
+        `https://yolo-server.onrender.com/api/products`
+      );
       setProducts(res.data.products);
     };
     getProducts();
   }, []);
   useEffect(() => {
     const getProducts = async () => {
-      const res = await axios.get(`/api/hero-slider`);
+      const res = await axios.get(
+        `https://yolo-server.onrender.com/api/hero-slider`
+      );
       setSlider(res.data);
     };
     getProducts();

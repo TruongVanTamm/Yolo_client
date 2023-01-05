@@ -14,10 +14,10 @@ function ResetPassword() {
   const alert = useAlert();
   const [data, setData] = useState(initialState);
   const { token } = useParams();
-  const { password, cf_password, } = data;
+  const { password, cf_password } = data;
 
   const logoutUser = async () => {
-    await axios.get('/user/logout');
+    await axios.get('https://yolo-server.onrender.com/user/logout');
 
     localStorage.removeItem('firstLogin');
 
@@ -54,7 +54,7 @@ function ResetPassword() {
 
     try {
       const res = await axios.post(
-        '/user/reset',
+        'https://yolo-server.onrender.com/user/reset',
         { password },
         {
           headers: { Authorization: token },
@@ -63,7 +63,7 @@ function ResetPassword() {
       setData({
         ...data,
       });
-      logoutUser()
+      logoutUser();
       return alert.show(
         <div style={{ fontSize: '12px' }}>{res.data.msg}</div>,
         { type: types.INFO }

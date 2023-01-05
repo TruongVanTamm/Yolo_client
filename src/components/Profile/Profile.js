@@ -30,9 +30,12 @@ function Profile() {
     if (isAdmin) {
       const getUsers = async () => {
         try {
-          const res = await axios.get('/user/all_infor', {
-            headers: { Authorization: token },
-          });
+          const res = await axios.get(
+            'https://yolo-server.onrender.com/user/all_infor',
+            {
+              headers: { Authorization: token },
+            }
+          );
           setUsers(res.data);
         } catch (err) {
           alert.show(err.response.data.msg);
@@ -77,12 +80,16 @@ function Profile() {
       formData.append('file', file);
 
       setLoading(true);
-      const res = await axios.post('/api/upload_avatar', formData, {
-        headers: {
-          'content-type': 'multipart/form-data',
-          Authorization: token,
-        },
-      });
+      const res = await axios.post(
+        'https://yolo-server.onrender.com/api/upload_avatar',
+        formData,
+        {
+          headers: {
+            'content-type': 'multipart/form-data',
+            Authorization: token,
+          },
+        }
+      );
       setLoading(false);
       setAvatar(res.data.url);
     } catch (err) {
@@ -96,7 +103,7 @@ function Profile() {
   const updateInfor = () => {
     try {
       axios.patch(
-        '/user/update',
+        'https://yolo-server.onrender.com/user/update',
         {
           name: name ? name : user.name,
           avatar: avatar ? avatar : user.avatar,
@@ -154,7 +161,7 @@ function Profile() {
 
     try {
       axios.post(
-        '/user/reset',
+        'https://yolo-server.onrender.com/user/reset',
         { password },
         {
           headers: { Authorization: token },
@@ -186,9 +193,12 @@ function Profile() {
       if (user._id !== id) {
         if (window.confirm('Bạn muốn xóa người dùng này ?')) {
           setLoading(true);
-          await axios.delete(`/user/delete/${id}`, {
-            headers: { Authorization: token },
-          });
+          await axios.delete(
+            `https://yolo-server.onrender.com/user/delete/${id}`,
+            {
+              headers: { Authorization: token },
+            }
+          );
           setLoading(false);
           setCallback(!callback);
         }
@@ -199,18 +209,18 @@ function Profile() {
   };
   return (
     <>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>Thông tin người dùng</title>
-          <link
-            rel="canonical"
-            href="http://mysite.com/example"
-          />
-          <meta
-            name="description"
-            content="Truong Van Tam dang dev Yolo"
-          />
-        </Helmet>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Thông tin người dùng</title>
+        <link
+          rel="canonical"
+          href="http://mysite.com/example"
+        />
+        <meta
+          name="description"
+          content="Truong Van Tam dang dev Yolo"
+        />
+      </Helmet>
       {loading ? (
         <Loading></Loading>
       ) : (
@@ -340,7 +350,9 @@ function Profile() {
                                 : `/edit_user/${item._id}`
                             }
                             style={
-                              user._id === item._id ? { opacity: 0.5 , cursor: 'default' } : {}
+                              user._id === item._id
+                                ? { opacity: 0.5, cursor: 'default' }
+                                : {}
                             }
                           >
                             <i
@@ -357,7 +369,9 @@ function Profile() {
                                 : () => handleDelete(item._id)
                             }
                             style={
-                              user._id === item._id ? { opacity: 0.5 , cursor: 'default' } : {}
+                              user._id === item._id
+                                ? { opacity: 0.5, cursor: 'default' }
+                                : {}
                             }
                           ></i>
                         </td>

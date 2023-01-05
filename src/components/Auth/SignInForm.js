@@ -30,7 +30,7 @@ const SignInForm = () => {
     }),
     onSubmit: async (values) => {
       try {
-        await axios.post('/user/login', { ...values });
+        await axios.post('https://yolo-server.onrender.com/user/login', { ...values });
 
         localStorage.setItem('firstLogin', true);
 

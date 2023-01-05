@@ -33,7 +33,11 @@ const Home = () => {
   const [result2, setResult2] = useState(0);
   useEffect(() => {
     const getProducts = async () => {
-      const res = await axios.get(`/api/products?limit=${page * 6}&${sort}`);
+      const res = await axios.get(
+        `https://yolo-server.onrender.com/api/products?limit=${
+          page * 6
+        }&${sort}`
+      );
       setSort('sort=-sold');
       setProduct1(res.data.products);
       setResult(res.data.result);
@@ -42,7 +46,11 @@ const Home = () => {
   }, [page, sort]);
   useEffect(() => {
     const getProducts = async () => {
-      const res = await axios.get(`/api/products?limit=${page1 * 12}&${sort1}`);
+      const res = await axios.get(
+        `https://yolo-server.onrender.com/api/products?limit=${
+          page1 * 12
+        }&${sort1}`
+      );
       setSort1('');
       setProduct2(res.data.products);
       setResult1(res.data.result);
@@ -51,7 +59,11 @@ const Home = () => {
   }, [page1, sort1]);
   useEffect(() => {
     const getProducts = async () => {
-      const res = await axios.get(`/api/products?limit=${page2 * 6}&${sort2}`);
+      const res = await axios.get(
+        `https://yolo-server.onrender.com/api/products?limit=${
+          page2 * 6
+        }&${sort2}`
+      );
       setSort2('sort=oldest');
       setProduct3(res.data.products);
       setResult2(res.data.result);
@@ -164,17 +176,25 @@ const Home = () => {
             {result1 < page1 * 8 ? (
               ''
             ) : (
-              <button onClick={() => setPage1(page1 + 1)}>{t("Tải thêm")}</button>
+              <button onClick={() => setPage1(page1 + 1)}>
+                {t('Tải thêm')}
+              </button>
             )}
           </div>
         </SectionBody>
       </Section>
       <Section>
-        <div className="Section__swiper" >
-            <Swiper></Swiper> 
+        <div className="Section__swiper">
+          <Swiper></Swiper>
           <div className="Section__swiper__static">
-            <img src={require('../Asset/images/banner1.jpg')} alt="" />
-            <img src={require('../Asset/images/banner3.jpg')} alt="" />
+            <img
+              src={require('../Asset/images/banner1.jpg')}
+              alt=""
+            />
+            <img
+              src={require('../Asset/images/banner3.jpg')}
+              alt=""
+            />
           </div>
         </div>
       </Section>

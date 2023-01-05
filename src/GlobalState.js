@@ -9,12 +9,14 @@ export const GlobalState = createContext();
 
 export const DataProvider = ({ children }) => {
   const [token, setToken] = useState(false);
-  const [theme,setTheme]=useState('light');
+  const [theme, setTheme] = useState('light');
   useEffect(() => {
     const firstLogin = localStorage.getItem('firstLogin');
     if (firstLogin) {
       const refreshToken = async () => {
-        const res = await axios.get('/user/refresh_token');
+        const res = await axios.get(
+          'https://yolo-server.onrender.com/user/refresh_token'
+        );
         setToken(res.data.access_token);
 
         setTimeout(() => {
@@ -25,7 +27,7 @@ export const DataProvider = ({ children }) => {
     }
   }, []);
   const state = {
-    theme: [theme,setTheme],
+    theme: [theme, setTheme],
     token: [token, setToken],
     productsAPI: ProductsAPI(),
     userAPI: UserAPI(token),

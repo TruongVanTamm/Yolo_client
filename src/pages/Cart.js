@@ -31,7 +31,7 @@ const Cart = () => {
   }, [cart]);
   const addToCart = async (cart) => {
     await axios.patch(
-      '/user/addcart',
+      'https://yolo-server.onrender.com/user/addcart',
       { cart },
       {
         headers: { Authorization: token },
@@ -76,7 +76,7 @@ const Cart = () => {
     const { paymentID, address } = payment;
 
     await axios.post(
-      '/api/payment',
+      'https://yolo-server.onrender.com/api/payment',
       { cart, paymentID, address },
       {
         headers: { Authorization: token },
@@ -162,7 +162,6 @@ const Cart = () => {
               <div className="cart__list__item__detail">
                 <div className="cart__list__item__detail__info">
                   <p>
-                  
                     <span>Sản phẩm</span> {product.name}
                   </p>
                   <p>

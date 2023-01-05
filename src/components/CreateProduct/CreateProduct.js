@@ -101,7 +101,7 @@ const CreateProduct = () => {
       formData.append('file', file);
       setLoading(true);
 
-      const res = await axios.post('/api/upload', formData, {
+      const res = await axios.post('https://yolo-server.onrender.com/api/upload', formData, {
         headers: {
           'content-type': 'multipart/form-data',
           Authorization: token,
@@ -151,7 +151,7 @@ const CreateProduct = () => {
       let formData = new FormData();
       formData.append('file', file);
       setLoading2(true);
-      const res = await axios.post('/api/upload', formData, {
+      const res = await axios.post('https://yolo-server.onrender.com/api/upload', formData, {
         headers: {
           'content-type': 'multipart/form-data',
           Authorization: token,
@@ -177,7 +177,7 @@ const CreateProduct = () => {
         );
       setLoading(true);
       await axios.post(
-        '/api/destroy',
+        'https://yolo-server.onrender.com/api/destroy',
         { public_id: image01.public_id },
         {
           headers: { Authorization: token },
@@ -203,7 +203,7 @@ const CreateProduct = () => {
         );
       setLoading2(true);
       await axios.post(
-        '/api/destroy',
+        'https://yolo-server.onrender.com/api/destroy',
         { public_id: image02.public_id },
         {
           headers: { Authorization: token },
@@ -239,7 +239,7 @@ const CreateProduct = () => {
         );
       if (onEdit) {
         await axios.put(
-          `/api/products/${product._id}`,
+          `https://yolo-server.onrender.com/api/products/${product._id}`,
           { ...product, ...images, color,size },
           {
             headers: { Authorization: token },
@@ -247,7 +247,7 @@ const CreateProduct = () => {
         );
       } else {
         await axios.post(
-          '/api/products',
+          'https://yolo-server.onrender.com/api/products',
           { ...product, ...images, color,size },
           {
             headers: { Authorization: token },

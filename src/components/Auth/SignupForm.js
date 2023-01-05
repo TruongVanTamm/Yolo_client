@@ -40,7 +40,9 @@ const SignupForm = () => {
     }),
     onSubmit: async (values) => {
       try {
-        await axios.post('/user/register', { ...values });
+        await axios.post('https://yolo-server.onrender.com/user/register', {
+          ...values,
+        });
         localStorage.setItem('firstLogin', true);
         alert.show(
           <div style={{ fontSize: '12px' }}>
@@ -59,7 +61,7 @@ const SignupForm = () => {
 
   return (
     <section>
-       <Helmet>
+      <Helmet>
         <meta charSet="utf-8" />
         <title>Đăng kí</title>
         <link

@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/Yolo_client/static/css/main.5e603483.css",
+    "main.js": "/Yolo_client/static/js/main.691ee1b7.js",
+    "static/media/boxicons.svg": "/Yolo_client/static/media/boxicons.1074e022279973afba03.svg",
+    "static/media/banner2.png": "/Yolo_client/static/media/banner2.b41cc5c451499f8edfb2.png",
+    "static/media/banner3.jpg": "/Yolo_client/static/media/banner3.9e2301d4772b75f2293b.jpg",
+    "static/media/banner5.jpg": "/Yolo_client/static/media/banner5.9aa26504e51d6cb1ea22.jpg",
+    "static/media/boxicons.eot": "/Yolo_client/static/media/boxicons.21f7c5dd64d88e1fc666.eot",
+    "static/media/boxicons.woff": "/Yolo_client/static/media/boxicons.02aa967c5bfb9489501a.woff",
+    "static/media/boxicons.ttf": "/Yolo_client/static/media/boxicons.ad0ddae357213656b3e6.ttf",
+    "static/media/banner.png": "/Yolo_client/static/media/banner.3c5f3ab85194c653236e.png",
+    "static/media/banner1.jpg": "/Yolo_client/static/media/banner1.58bafe14b2bcedd65a82.jpg",
+    "static/media/banner4.jpg": "/Yolo_client/static/media/banner4.5ad3dda2af59ecc927a9.jpg",
+    "static/media/boxicons.woff2": "/Yolo_client/static/media/boxicons.0335b427967c56248ea6.woff2",
+    "static/media/Logo.png": "/Yolo_client/static/media/Logo.133c9043045592275117.png",
+    "static/media/Logo-2.png": "/Yolo_client/static/media/Logo-2.3f227664b3ce56e8fcde.png",
+    "static/media/cart-empty.png": "/Yolo_client/static/media/cart-empty.f04d7ce3c799d73fcd06.png",
+    "static/media/forgot-password.svg": "/Yolo_client/static/media/forgot-password.cb1d0db11c30983cf9d6896bd7d585cd.svg",
+    "static/media/authen.svg": "/Yolo_client/static/media/authen.3a4f142762d4c5264efa492994e53bbf.svg",
+    "static/media/reset.svg": "/Yolo_client/static/media/reset.bb9211dff51e0c3b4680d8abef27abaf.svg",
+    "static/media/category.svg": "/Yolo_client/static/media/category.17f607b96f604dda3e0f5582ca8c0b5c.svg",
+    "static/media/signup.svg": "/Yolo_client/static/media/signup.93ea79adaa3cdb08a412759c4131430c.svg",
+    "index.html": "/Yolo_client/index.html",
+    "static/media/getFetch.cjs": "/Yolo_client/static/media/getFetch.c780682470504fffbd04.cjs",
+    "main.5e603483.css.map": "/Yolo_client/static/css/main.5e603483.css.map",
+    "main.691ee1b7.js.map": "/Yolo_client/static/js/main.691ee1b7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5e603483.css",
+    "static/js/main.691ee1b7.js"
+  ]
+}

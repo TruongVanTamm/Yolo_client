@@ -1,0 +1,80 @@
+.categories-wrapper {
+  @include flex(center, space-between);
+  @include mobile {
+    flex-direction: column-reverse;
+    &__img {
+      width: 100%;
+    }
+  }
+  &__main {
+
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 30px auto;
+    form {
+      width: 290px;
+      margin-bottom: 20px;
+    }
+    .col{
+      height: 60vh;
+      overflow:auto;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-size: 1.6rem;
+    }
+    input,
+    button {
+      height: 35px;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #555;
+      font-size: 1.4rem;
+    }
+    input {
+      width: 210px;
+    }
+    button {
+      width: 70px;
+      background: $btn-main-bg;
+      color: white;
+      margin-left: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+    .row {
+      // min-width: space-between;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      font-size: 1.4rem;
+      animation : anime 1.25s ease-in-out;
+      overflow: hidden;
+      width: 290px;
+    }
+  }
+}
+@keyframes anime {
+  0% {
+    transform: translateY(500%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) ;
+   width: 290px;
+   opacity: 1;
+  }
+}

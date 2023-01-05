@@ -1,0 +1,181 @@
+.create_product {
+  &__wrap{
+    @include flex(center, center);
+    order: 2;
+
+    @include tablet{
+      order: 1;
+    }
+    @include mobile{
+      flex-direction: column;
+    }
+  }
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  font-size: 1.4rem;
+  &__upload {
+
+    max-width: 450px;
+    height: 500px;
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 20px;
+    position: relative;
+  }
+  #file_up,
+  #file_up_2 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    outline: none;
+  }
+  #file_up::before {
+    content: '+';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 25%;
+    left: 0;
+    background: white;
+    color: $main-color;
+    font-size: 17rem;
+    text-align: center;
+    cursor: pointer;
+    margin: auto;
+  }
+  #file_up_2::before {
+    content: '+';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 25%;
+    left: 0;
+    background: white;
+    color: $main-color;
+    font-size: 17rem;
+    text-align: center;
+    cursor: pointer;
+    margin: auto;
+  }
+  #file_img,
+  #file_img_2 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    span {
+      position: absolute;
+      top: -13px;
+      right: -13px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-weight: 900;
+      color: crimson;
+    }
+  }
+  form {
+    order: 1;
+    @include tablet{
+      order: 2;
+    }
+    max-width: 500px;
+    min-width: 290px;
+    width: 100%;
+    margin: 15px 30px;
+    h1 {
+      text-align: center;
+      color: $main-color;
+    }
+    .hint-price {
+      position: absolute;
+      bottom: 16%;
+      left: -15%;
+      @include mobile {
+        @include flex(center, space-between);
+        flex-direction: column;
+      }
+      i {
+        font-size: 3rem;
+        color: $main-color;
+      }
+    }
+    .row {
+      width: 100%;
+      margin: 15px 0;
+      border-bottom: 1px solid $text-main-color;
+      label,
+      select {
+        font-size: 1.4rem;
+      }
+    }
+    input,
+    textarea {
+      width: 100%;
+      min-height: 40px;
+      padding: 0 5px;
+      font-size: 1.4rem;
+    }
+    button {
+      width: 200px;
+      height: 40px;
+      background: $btn-main-bg;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      border-radius: 12px;
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+  }
+  @include mobile {
+    &__upload {
+      max-width: 100%;
+      height: 300px;
+      width: 100%;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 20px;
+      position: relative;
+    }
+    #file_up::before {
+      top: 10%;
+    }
+    #file_up_2::before {
+      top: 10%;
+    }
+  }
+  .dropdown-heading{
+    button{
+      width:40px;
+      @include flex(center,space-between);
+    }
+  }
+  .select-item{
+    @include flex(center,space-between);
+    .item-renderer{
+      @include flex(center,space-between);
+      gap:10px;
+    }
+    input{
+      width: 25px;
+      height: 25px;
+    }
+  }
+}

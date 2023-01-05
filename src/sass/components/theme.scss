@@ -1,0 +1,52 @@
+// .header#dark {
+//   background-color: black;
+//   color: white !important;
+// }
+// #dark {
+//   background-color: black;
+//   .container {
+//     h3,
+//     .cart__list__item__detail__info__size,
+//     .cart__list__item__detail__info span {
+//       color: white !important;
+//     }
+//     .profile_page__left__avatar__img {
+//       background-color: #fff;
+//       border-radius: 50%;
+//     }
+//     .load-page {
+//       background-color: black;
+//     }
+//     background-color: black;
+//     color: white !important;
+//   }
+// }
+:root {
+  --font-color: #333;
+  --background-color: #fff;
+  --link-color: $main-color;
+}
+
+/* 2 */
+[data-theme='dark'] {
+  --font-color: #eee;
+  --background-color: #333;
+  --link-color: $main-color;
+}
+
+/* 3 */
+body {
+  background-color: var(--background-color);
+  color: var(--font-color);
+  .load-page {
+    background-color: var(--background-color);
+  }
+}
+
+a {
+  color: var(--link-color);
+}
+.header {
+  background-color: var(--background-color);
+  color: var(--font-color);
+}

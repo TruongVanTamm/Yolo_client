@@ -1,0 +1,40 @@
+.footer {
+  padding: 50px 100px;
+  box-shadow: $box-shadow;
+  font-size: 1.6rem;
+  @include tablet {
+    padding: 50px 60px;
+  }
+  @include mobile {
+    padding: 50px 20px;
+    font-size: 1.3rem;
+  }
+  &__logo {
+    height: 60px;
+  }
+  &__about {
+    p {
+      text-indent: 10px;
+      margin-bottom: 2rem;
+    }
+  }
+  &__title {
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+  &__content {
+    p {
+      margin-bottom: 1.25rem;
+      &:hover{
+        color: $main-color;
+      }
+    }
+  }
+  &__end {
+    text-align: center;
+    border-top: 1px solid #ccc;
+    height: 50px;
+    @include flex(center, center);
+  }
+}

@@ -1,0 +1,38 @@
+.ReactModal__Content {
+  top: 50% !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  z-index: 1000;
+  height: 80vh;
+  padding: 0 !important;
+  @include tablet {
+    width: 80vw;
+  }
+  @include mobile {
+    width: 100vw;
+    height: 100vh;
+  }
+  .product_view_modal__header {
+    width: 100%;
+    height: 70px;
+    background-color: #4267b2;
+    font-size: 2rem;
+    color: #fff;
+    @include flex(center, space-between);
+    gap: 10px;
+    span {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 80%;
+      padding: 0px 20px ;
+     
+  }
+  }
+}

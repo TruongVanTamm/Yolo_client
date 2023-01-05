@@ -1,0 +1,313 @@
+.header {
+  background-color: $main-bg;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  height: $header-height;
+  transition: height 0.3s ease;
+  @include tablet {
+    height: $header-tablet-height;
+  }
+  @include mobile {
+    height: $header-mobile-height;
+  }
+  .container {
+    height: 100%;
+  }
+  &.shrink {
+    height: $header-shrink-height;
+    box-shadow: $box-shadow;
+    z-index: 100;
+    @include mobile {
+      height: $header-mobile-height;
+      box-shadow: none;
+    }
+  }
+  &__logo {
+    @include flex(center, center);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 110px;
+    &__user {
+      height: 30px;
+      @include mobile {
+        height: 20px;
+      }
+    }
+    &__admin {
+      height: 60px;
+      background-color: #fff;
+      @include mobile {
+        height: 40px;
+      }
+    }
+  }
+
+  &__menu {
+    @include flex(center, space-between);
+    height: 100%;
+    font-size: 2rem;
+    &__item ~ &__item {
+      margin-left: 39px;
+      @include mobile {
+        margin-left: 15px;
+      }
+    }
+    &__item {
+      color: $main-color;
+      font-weight: 550;
+      position: relative;
+      &.active {
+        @include tablet {
+          border-bottom: none;
+        }
+      }
+    }
+    &__item:hover {
+      color: $main-color;
+    }
+    &__left,
+    &__right {
+      @include flex(center, center);
+    }
+    &__right {
+      font-size: 2.8rem;
+      height: 100%;
+      position: relative;
+      &__item {
+        &__quantity {
+          position: absolute;
+          font-size: 18px;
+          @include mobile {
+            font-size: 14px;
+            top: 2px;
+          }
+          top: 0;
+          right: 0;
+          transform: translate(50%, -50%);
+        }
+        &:hover {
+          font-weight: bold;
+        }
+        &__user-option {
+          display: none;
+          background-color: white;
+          box-shadow: $box-shadow;
+          font-size: 1.6rem;
+          width: 230px;
+          position: absolute;
+          top: 100%;
+          right: -90px;
+          z-index: 100;
+          padding: 10px 20px;
+          border-radius: 10px;
+          margin-top: 10px;
+          transition: all 1s;
+          @include tablet {
+            right: 0px;
+            width: 200px;
+          }
+          @include mobile {
+            right: 0px;
+            width: 230px;
+            font-size: 1.4rem;
+            padding: 5px 20px;
+          }
+          &:after {
+            content: ' ';
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            background-color: transparent;
+            top: -40px;
+            left: 0;
+          }
+          &__list {
+            @include flex(flex-start, flex-start);
+            flex-direction: column;
+            li {
+              width: 100%;
+              padding: 10px 0;
+              border-bottom: 1px solid #ccc;
+              button {
+                background-color: transparent;
+                color: $main-color;
+              }
+            }
+            li:last-child {
+              border-bottom: none;
+            }
+            li:hover {
+              a,
+              button,
+              span {
+                color: #fbb96b;
+              }
+            }
+            a {
+              display: block;
+              width: 100%;
+            }
+            a:last-child {
+              border-bottom: none;
+            }
+          }
+        }
+        cursor: pointer;
+        @include flex(center, center);
+        @include tablet {
+          margin-left: 10px;
+        }
+        @include mobile {
+          font-size: 2.2rem;
+        }
+      }
+      &__user-option:hover {
+        .header__menu__right__item__user-option {
+          display: block;
+          animation: dropdown ease 0.25s;
+        }
+      }
+      @include tabletPro {
+        font-size: 2.2rem;
+      }
+    }
+    &__left {
+      &-close {
+        display: none;
+      }
+      @include tabletPro {
+        &__item {
+          font-size: 1.6rem;
+        }
+        &__item ~ &__item {
+          margin-left: 20px;
+        }
+      }
+      &__item::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 0;
+        height: 3px;
+        background-color: $main-color;
+        bottom: 0;
+        transition: width 0.5s ease;
+        left: 50%;
+        @include mobile {
+          display: none;
+        }
+      }
+      &__item::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 0;
+        height: 3px;
+        background-color: $main-color;
+        bottom: 0;
+        transition: width 0.5s ease;
+        right: 50%;
+        @include mobile {
+          display: none;
+        }
+      }
+      &__item {
+        &.active {
+          &::after {
+            width: 50%;
+          }
+          &::before {
+            width: 50%;
+          }
+        }
+      }
+      @include tablet {
+        &__item ~ &__item {
+          margin-left: unset;
+          margin-top: 20px;
+        }
+        flex-direction: column;
+        background-color: $main-bg;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        justify-content: flex-start;
+        padding: 30px;
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+        z-index: 1000;
+        &.active {
+          transform: translateX(0);
+        }
+        &-close {
+          cursor: pointer;
+          display: block;
+          position: absolute;
+          left: 20px;
+          top: 20px;
+          font-size: 3.25rem;
+        }
+      }
+
+      @include mobile {
+        &__item ~ &__item {
+          margin-left: unset;
+          margin-top: 20px;
+        }
+        flex-direction: column;
+        background-color: $main-bg;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        justify-content: flex-start;
+        padding: 30px;
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+        z-index: 1000;
+        &.active {
+          transform: translateX(0);
+        }
+        &-close {
+          cursor: pointer;
+          display: block;
+          position: absolute;
+          left: 20px;
+          top: 20px;
+          font-size: 3.25rem;
+        }
+      }
+    }
+    &__mobile-toggle {
+      display: none;
+      font-size: 2.5rem;
+      height: 100%;
+      cursor: pointer;
+      @include tablet {
+        display: flex;
+        align-items: center;
+      }
+      @include mobile {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+//
+@keyframes dropdown {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,177 @@
+.product {
+  @include flex(unset, flex-start);
+  scroll-behavior: auto;
+  @include mobile {
+    flex-direction: column;
+  }
+  &__images {
+    @include flex(flex-start, flex-start);
+    width: 55%;
+    @include tablet {
+      width: 80%;
+    }
+    @include mobile {
+      width: 100%;
+    }
+    flex-wrap: wrap;
+    gap: 80px;
+    @include mobile {
+      gap: 20px;
+    }
+    &__list {
+      width: 20%;
+      @include flex(center, space-between);
+      flex-direction: column;
+      gap: 10px;
+      @include mobile {
+        width: 30%;
+      }
+      &__item {
+        cursor: pointer;
+      }
+    }
+    &__main {
+      flex-grow: 0.65;
+      @include tablet {
+        flex-grow: 0.9;
+        padding-top: 100%;
+      }
+      @include mobile {
+        flex-grow: 1;
+        padding-top: 100%;
+      }
+      position: relative;
+      padding-top: 70%;
+      img {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+  &__info {
+    flex-grow: 1;
+    position: sticky;
+    top: $header-shrink-height;
+    @include tablet {
+      top: 0;
+    }
+    padding-top: 1rem;
+    &__title {
+      font-size: 2.5rem;
+      font-weight: normal;
+    }
+    &__item {
+      margin-top: 2rem;
+      &__price {
+        color: $main-color;
+        font-size: 2rem;
+        font-weight: normal;
+      }
+      &__title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 1rem;
+      }
+      &__list {
+        @include flex(center, flex-start);
+
+        &__item {
+          @include flex(center, center);
+          @include mobile {
+            width: 40px;
+            height: 40px;
+          }
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          border: 3px solid $text-second-color;
+          cursor: pointer;
+          margin-right: 1rem;
+          .circle {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            @include mobile {
+              width: 30px;
+              height: 30px;
+            }
+          }
+          &__size {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+          }
+        }
+        .active {
+          border: 4px solid $main-color;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+      }
+      &__quantity {
+        @include flex(flex-start, flex-start);
+        &__btn {
+          @include flex(center, center);
+          width: 30px;
+          height: 30px;
+          border: 2px solid $text-second-color;
+          font-size: 1.5rem;
+          cursor: pointer;
+        }
+        &__input {
+          @include flex(center, center);
+          height: 30px;
+          width: 90px;
+          font-size: 1.5rem;
+          border-top: 2px solid $text-second-color;
+          border-bottom: 2px solid $text-second-color;
+        }
+      }
+      button {
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  .product__description {
+    max-height: 300px;
+    // @include mobile {
+    //   display: none;
+    // }
+    // &.mobile {
+    //   display: none;
+    //   @include mobile {
+    //     display: block;
+    //   }
+    // }
+    width: 100%;
+    padding: 2rem 0;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    &__title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin: 2rem 0;
+      color: $main-color;
+    }
+    &__content {
+      font-size: 1.4rem;
+      line-height: 2;
+      text-align: justify;
+      position: relative;
+    }
+    &.expand {
+      height: max-content;
+      max-height: 2000px;
+    }
+
+    &__toggle {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}

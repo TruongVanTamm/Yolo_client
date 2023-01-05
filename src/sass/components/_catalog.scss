@@ -1,0 +1,121 @@
+.catalog {
+  @include flex(flex-start, flex-start);
+
+  @include tablet {
+    flex-direction: column;
+  }
+  &__content {
+    .catolog_wrap {
+      width: 100%;
+    }
+    width: 100%;
+    @include flex(center, space-between);
+    flex-direction: column;
+    @include tablet {
+      width: 100%;
+    }
+    &__action {
+      @include flex(center, space-between);
+      margin-bottom: 20px;
+      width: 100%;
+      &__delete-all {
+        height: 50px;
+        width: 20%;
+        font-size: 1.4rem;
+        @include flex(center, flex-start);
+        gap: 15px;
+        .show {
+          display: none;
+        }
+        span {
+          font-size: 1.6rem;
+          color: $main-color;
+          font-weight: bold;
+        }
+        input {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+        }
+        button {
+          background-color: red;
+          padding: 8px;
+          border-radius: 4px;
+          color: #fff;
+          display: block;
+        }
+      }
+      &__filter_menu {
+        @include flex(center, space-between);
+        flex-grow: 1;
+        flex-direction: row;
+        gap: 15px;
+        &__category,
+        &__sort {
+          span {
+            font-size: 1.6rem;
+            color: $main-color;
+            font-weight: bold;
+          }
+          select {
+            font-size: 1.4rem;
+            border: 1px solid $text-second-color;
+            padding: 1rem;
+            border-radius: 5px;
+          }
+        }
+        &__search {
+          font-size: 1.6rem;
+          border: 1px solid $text-second-color;
+          flex-grow: 1;
+          padding: 1rem;
+          border-radius: 5px;
+        }
+      }
+      @include mobile {
+        flex-direction: column;
+        &__delete-all {
+          width: 100%;
+        }
+        &__filter_menu {
+          align-items: flex-start;
+          flex-wrap: wrap;
+          &__category,
+          &__sort {
+            span {
+              display: block;
+              width: 90px;
+            }
+          }
+        }
+      }
+    }
+
+    &__not-found {
+      transform: translateY(65%);
+      &__main {
+        @include flex(center, center);
+        flex-direction: column;
+        gap: 20px;
+        color: $main-color;
+        font-size: 1.4rem;
+        text-align: center;
+        @include tablet {
+          transform: translateX(50%);
+        }
+        @include mobile {
+          transform: translateX(0);
+        }
+      }
+    }
+  }
+
+  &__filter__toggle {
+    display: none;
+    @include tablet {
+      z-index: 97;
+      display: block;
+      margin-bottom: 2rem;
+    }
+  }
+}

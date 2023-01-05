@@ -1,0 +1,48 @@
+.Signup_container {
+  &__main {
+    background-color: white;
+    padding: 1.5rem;
+    min-width: 500px;
+    border-radius: 14px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-top: 10px;
+    animation: signAnimation 0.75s ease-in-out;
+    @include mobile {
+      min-width: 100%;
+      padding: 20px;
+      border-radius: 0;
+      position: relative;
+      top: $header-mobile-height;
+      left: 0;
+      transform: translate(0, 0);
+      margin-top: 0;
+    }
+    header {
+      font-size: 2.5rem;
+      color: $main-color;
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+  @include mobile {
+    &__img {
+      display: none;
+    }
+    &__main {
+      box-shadow: unset;
+      transform: translateY(30%);
+    }
+  }
+}
+@keyframes signAnimation {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 50%;
+  }
+}

@@ -11,7 +11,7 @@ const SignIn = () => {
       const activationEmail = async () => {
         try {
           const res = await axios.post(
-            'http://localhost:5001/user/activation',
+            'http://api.zhangwenxin.click/user/activation',
             { activation_token }
           );
           toast.info(res.data.msg);

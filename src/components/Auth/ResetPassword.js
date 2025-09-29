@@ -16,7 +16,7 @@ function ResetPassword() {
   const { password, cf_password } = data;
 
   const logoutUser = async () => {
-    await axios.get('http://localhost:5001/user/logout');
+    await axios.get('http://api.zhangwenxin.click/user/logout');
 
     localStorage.removeItem('firstLogin');
 
@@ -45,7 +45,7 @@ function ResetPassword() {
 
     try {
       const res = await axios.post(
-        'http://localhost:5001/user/reset',
+        'http://api.zhangwenxin.click/user/reset',
         { password },
         {
           headers: { Authorization: token },

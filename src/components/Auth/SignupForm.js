@@ -39,7 +39,7 @@ const SignupForm = () => {
     }),
     onSubmit: async (values) => {
       try {
-        await axios.post('http://localhost:5001/user/register', {
+        await axios.post('http://api.zhangwenxin.click/user/register', {
           ...values,
         });
         localStorage.setItem('firstLogin', true);

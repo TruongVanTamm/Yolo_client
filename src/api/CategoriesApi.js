@@ -7,7 +7,7 @@ function CategoriesAPI() {
 
   useEffect(() => {
     const getCategories = async () => {
-      const res = await axios.get('http://localhost:5001/api/category');
+      const res = await axios.get('http://api.zhangwenxin.click/api/category');
       setCategories(res.data);
     };
 

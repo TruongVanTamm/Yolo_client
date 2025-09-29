@@ -31,7 +31,7 @@ const Cart = () => {
   }, [cart]);
   const addToCart = async (cart) => {
     await axios.patch(
-      'http://localhost:5001/user/addcart',
+      'http://api.zhangwenxin.click/user/addcart',
       { cart },
       {
         headers: { Authorization: token },
@@ -76,7 +76,7 @@ const Cart = () => {
     const { paymentID, address } = payment;
 
     await axios.post(
-      'http://localhost:5001/api/payment',
+      'http://api.zhangwenxin.click/api/payment',
       { cart, paymentID, address },
       {
         headers: { Authorization: token },

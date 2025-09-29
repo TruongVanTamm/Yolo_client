@@ -52,7 +52,7 @@ const Header = () => {
     menuLeft.current.classList.toggle('active');
   };
   const logoutUser = async () => {
-    await axios.get('http://localhost:5001/user/logout');
+    await axios.get('http://api.zhangwenxin.click/user/logout');
 
     localStorage.removeItem('firstLogin');
 

@@ -24,7 +24,7 @@ function ForgotPassword() {
     }
 
     try {
-      const res = await axios.post('http://localhost:5001/user/forgot', {
+      const res = await axios.post('http://api.zhangwenxin.click/user/forgot', {
         email,
       });
       setData({ ...data });

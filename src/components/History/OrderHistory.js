@@ -12,14 +12,20 @@ function OrderHistory() {
     if (token) {
       const getHistory = async () => {
         if (isAdmin) {
-          const res = await axios.get('http://localhost:5001/api/payment', {
-            headers: { Authorization: token },
-          });
+          const res = await axios.get(
+            'http://api.zhangwenxin.click/api/payment',
+            {
+              headers: { Authorization: token },
+            }
+          );
           setHistory(res.data);
         } else {
-          const res = await axios.get('http://localhost:5001/user/history', {
-            headers: { Authorization: token },
-          });
+          const res = await axios.get(
+            'http://api.zhangwenxin.click/user/history',
+            {
+              headers: { Authorization: token },
+            }
+          );
           setHistory(res.data);
         }
       };

@@ -15,9 +15,12 @@ function UserAPI(token) {
     if (token) {
       const getUser = async () => {
         try {
-          const res = await axios.get('http://localhost:5001/user/infor', {
-            headers: { Authorization: token },
-          });
+          const res = await axios.get(
+            'http://api.zhangwenxin.click/user/infor',
+            {
+              headers: { Authorization: token },
+            }
+          );
           setUser(res.data);
           setIsLogged(true);
           res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false);
@@ -57,7 +60,7 @@ function UserAPI(token) {
     if (check) {
       setCart([...cart, { ...product, quantity: 1 }]);
       await axios.patch(
-        'http://localhost:5001/user/addcart',
+        'http://api.zhangwenxin.click/user/addcart',
         { cart: [...cart, { ...product, quantity: 1 }] },
         {
           headers: { Authorization: token },
@@ -77,7 +80,7 @@ function UserAPI(token) {
     if (check) {
       setFavorite([...favorite, { ...product }]);
       await axios.patch(
-        'http://localhost:5001/user/addfavorite',
+        'http://api.zhangwenxin.click/user/addfavorite',
         { favorite: [...favorite, { ...product }] },
         {
           headers: { Authorization: token },
@@ -90,7 +93,7 @@ function UserAPI(token) {
   };
   const addToFavorite = async (favorite) => {
     await axios.patch(
-      'http://localhost:5001/user/addfavorite',
+      'http://api.zhangwenxin.click/user/addfavorite',
       { favorite },
       {
         headers: { Authorization: token },

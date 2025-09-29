@@ -24,14 +24,16 @@ const Product = () => {
   }, []);
   useEffect(() => {
     const getProducts = async () => {
-      const res = await axios.get(`http://localhost:5001/api/products`);
+      const res = await axios.get(`http://api.zhangwenxin.click/api/products`);
       setProducts(res.data.products);
     };
     getProducts();
   }, []);
   useEffect(() => {
     const getProducts = async () => {
-      const res = await axios.get(`http://localhost:5001/api/hero-slider`);
+      const res = await axios.get(
+        `http://api.zhangwenxin.click/api/hero-slider`
+      );
       setSlider(res.data);
     };
     getProducts();

@@ -14,9 +14,7 @@ export const DataProvider = ({ children }) => {
     const firstLogin = localStorage.getItem('firstLogin');
     if (firstLogin) {
       const refreshToken = async () => {
-        const res = await axios.get(
-          'https://yolo-server.onrender.com/user/refresh_token'
-        );
+        const res = await axios.get('http://localhost:5001/user/refresh_token');
         setToken(res.data.access_token);
 
         setTimeout(() => {

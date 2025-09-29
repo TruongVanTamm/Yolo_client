@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { GlobalState } from '../../GlobalState';
-import { useAlert, types } from 'react-alert';
+import { toast } from 'react-toastify';
 import Loading from '../utils/Loading';
 import { isLength, isMatch, isPassword } from '../utils/Validation';
 import { Helmet } from 'react-helmet';
@@ -14,7 +14,6 @@ const initialState = {
 };
 
 function Profile() {
-  const alert = useAlert();
   const state = useContext(GlobalState);
   const [isAdmin] = state.userAPI.isAdmin;
   const [user] = state.userAPI.user;
@@ -30,15 +29,12 @@ function Profile() {
     if (isAdmin) {
       const getUsers = async () => {
         try {
-          const res = await axios.get(
-            'https://yolo-server.onrender.com/user/all_infor',
-            {
-              headers: { Authorization: token },
-            }
-          );
+          const res = await axios.get('http://localhost:5001/user/all_infor', {
+            headers: { Authorization: token },
+          });
           setUsers(res.data);
         } catch (err) {
-          alert.show(err.response.data.msg);
+          toast.error(err.response.data.msg);
         }
       };
       getUsers();
@@ -59,21 +55,21 @@ function Profile() {
         setData({
           ...data,
         });
-        return alert('File not exist.');
+        return toast.error('File not exist.');
       }
 
       if (file.size > 1024 * 1024) {
         setData({
           ...data,
         });
-        return alert('File not exist.');
+        return toast.error('File not exist.');
       }
 
       if (file.type !== 'image/jpeg' && file.type !== 'image/png') {
         setData({
           ...data,
         });
-        return alert('File not exist.');
+        return toast.error('File not exist.');
       }
 
       let formData = new FormData();
@@ -81,7 +77,7 @@ function Profile() {
 
       setLoading(true);
       const res = await axios.post(
-        'https://yolo-server.onrender.com/api/upload_avatar',
+        'http://localhost:5001/api/upload_avatar',
         formData,
         {
           headers: {
@@ -93,17 +89,14 @@ function Profile() {
       setLoading(false);
       setAvatar(res.data.url);
     } catch (err) {
-      alert.show(
-        <div style={{ fontSize: '12px' }}>Tệp tải lên không hợp lệ</div>,
-        { type: types.ERROR }
-      );
+      toast.error('Tệp tải lên không hợp lệ');
     }
   };
 
   const updateInfor = () => {
     try {
       axios.patch(
-        'https://yolo-server.onrender.com/user/update',
+        'http://localhost:5001/user/update',
         {
           name: name ? name : user.name,
           avatar: avatar ? avatar : user.avatar,
@@ -114,46 +107,30 @@ function Profile() {
       );
 
       setData({ ...data });
-      alert.show(
-        <div style={{ fontSize: '12px' }}>Cập nhật hồ sơ thành công</div>,
-        { type: types.INFO }
-      );
+      toast.info('Cập nhật hồ sơ thành công');
     } catch (err) {
       setData({ ...data });
-      alert.show(
-        <div style={{ fontSize: '12px' }}>{err.response.data.msg}</div>,
-        { type: types.ERROR }
-      );
+      toast.error(err.response.data.msg);
     }
   };
 
   const updatePassword = () => {
     if (isLength(password)) {
-      alert.show(<div style={{ fontSize: '12px' }}>Mật khẩu quá ngắn</div>, {
-        type: types.ERROR,
-      });
+      toast.error('Mật khẩu quá ngắn');
       return setData({
         ...data,
       });
     }
     if (!isPassword(password)) {
-      alert.show(
-        <div style={{ fontSize: '12px' }}>
-          Mật khẩu yêu cầu 8 ký tự, chứa ít nhất một chữ cái và một số
-        </div>,
-        {
-          type: types.ERROR,
-        }
+      toast.error(
+        'Mật khẩu yêu cầu 8 ký tự, chứa ít nhất một chữ cái và một số'
       );
       return setData({
         ...data,
       });
     }
     if (!isMatch(password, cf_password)) {
-      alert.show(
-        <div style={{ fontSize: '12px' }}>Mật khẩu không trùng khớp</div>,
-        { type: types.ERROR }
-      );
+      toast.error('Mật khẩu không trùng khớp');
       return setData({
         ...data,
       });
@@ -161,24 +138,19 @@ function Profile() {
 
     try {
       axios.post(
-        'https://yolo-server.onrender.com/user/reset',
+        'http://localhost:5001/user/reset',
         { password },
         {
           headers: { Authorization: token },
         }
       );
 
-      alert.show(<div style={{ fontSize: '12px' }}>Update thành công</div>, {
-        type: types.INFO,
-      });
+      toast.info('Update thành công');
       setData({
         ...data,
       });
     } catch (err) {
-      alert.show(
-        <div style={{ fontSize: '12px' }}>{err.response.data.msg}</div>,
-        { type: types.INFO }
-      );
+      toast.info(err.response.data.msg);
       setData({ ...data });
     }
   };
@@ -193,12 +165,9 @@ function Profile() {
       if (user._id !== id) {
         if (window.confirm('Bạn muốn xóa người dùng này ?')) {
           setLoading(true);
-          await axios.delete(
-            `https://yolo-server.onrender.com/user/delete/${id}`,
-            {
-              headers: { Authorization: token },
-            }
-          );
+          await axios.delete(`http://localhost:5001/user/delete/${id}`, {
+            headers: { Authorization: token },
+          });
           setLoading(false);
           setCallback(!callback);
         }

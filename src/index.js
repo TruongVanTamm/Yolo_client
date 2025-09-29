@@ -8,13 +8,8 @@ import HttpApi from 'i18next-http-backend';
 import Layout from './components/Layout/Layout';
 import './Asset/boxicons-2.1.2/css/boxicons.min.css';
 import './sass/index.scss';
-import {
-  transitions,
-  positions,
-  types,
-  Provider as AlertProvider,
-} from 'react-alert';
-import AlertTemplate from 'react-alert-template-basic';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { DataProvider } from './GlobalState';
 import Loading from './components/utils/Loading';
 import UnsecuredPage from './components/utils/UnsecuredPage';
@@ -36,27 +31,16 @@ i18n
     },
   });
 
-const options = {
-  // you can also just use 'bottom center'
-  position: positions.TOP_RIGHT,
-  timeout: 5000,
-  offset: '30px',
-  // you can also just use 'scale'
-  transition: transitions.SCALE,
-  type: types.ERROR,
-};
-
 function App() {
   return (
     <Suspense fallback={<Loading></Loading>}>
-      <AlertProvider
-        template={AlertTemplate}
-        {...options}
-      >
-        <DataProvider>
-          <Layout></Layout>
-        </DataProvider>
-      </AlertProvider>
+      <DataProvider>
+        <Layout />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+        />
+      </DataProvider>
     </Suspense>
   );
 }

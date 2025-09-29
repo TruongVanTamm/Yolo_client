@@ -4,7 +4,7 @@ import Button from '../components/Button/Button';
 import numberWithCommas from '../components/utils/numberWithCommas';
 import { GlobalState } from '../GlobalState';
 import axios from 'axios';
-import PaypalButton from '../components/Button/PaypalButton';
+// import PaypalButton from '../components/Button/PaypalButton';
 import { Helmet } from 'react-helmet';
 const Cart = () => {
   const state = useContext(GlobalState);
@@ -31,7 +31,7 @@ const Cart = () => {
   }, [cart]);
   const addToCart = async (cart) => {
     await axios.patch(
-      'https://yolo-server.onrender.com/user/addcart',
+      'http://localhost:5001/user/addcart',
       { cart },
       {
         headers: { Authorization: token },
@@ -76,7 +76,7 @@ const Cart = () => {
     const { paymentID, address } = payment;
 
     await axios.post(
-      'https://yolo-server.onrender.com/api/payment',
+      'http://localhost:5001/api/payment',
       { cart, paymentID, address },
       {
         headers: { Authorization: token },
@@ -135,10 +135,10 @@ const Cart = () => {
             </div>
           </div>
           <div className="cart__info__btn">
-            <PaypalButton
+            {/* <PaypalButton
               total={total}
               tranSuccess={tranSuccess}
-            />
+            /> */}
             <Link to="/catalog">
               <Button size="sm">Tiếp tục mua hàng</Button>
             </Link>

@@ -3,13 +3,13 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { GlobalState } from '../../GlobalState';
 import Loading from '../utils/Loading';
-import { useAlert, types } from 'react-alert';
 import { Helmet } from 'react-helmet';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { MultiSelect } from 'react-multi-select-component';
 import { useTranslation } from 'react-i18next';
 const CreateProduct = () => {
   const { t } = useTranslation();
-  const alert = useAlert();
   const [price, setPrice] = useState(0);
   const initialStateMemo = useMemo(() => {
     return {
@@ -69,115 +69,71 @@ const CreateProduct = () => {
   const handleUpload = async (e) => {
     e.preventDefault();
     try {
-      if (!isAdmin)
-        return alert.show(
-          <div style={{ fontSize: '12px' }}>
-            Không có quyền truy nhập tài nguyên
-          </div>,
-          { type: types.ERROR }
-        );
+      if (!isAdmin) return;
       const file = e.target.files[0];
-      if (!file)
-        return alert.show(
-          <div style={{ fontSize: '12px' }}>
-            Không có file nào được tải lên
-          </div>,
-          { type: types.ERROR }
-        );
+      if (!file) return;
 
-      if (file.size > 1024 * 1024)
-        return alert.show(
-          <div style={{ fontSize: '12px' }}>Kích thước quá lớn</div>,
-          { type: types.ERROR }
-        );
+      if (file.size > 1024 * 1024) return;
 
-      if (file.type !== 'image/jpeg' && file.type !== 'image/png')
-        return alert.show(
-          <div style={{ fontSize: '12px' }}>Định dạng file không hợp lệ</div>,
-          { type: types.ERROR }
-        );
+      if (file.type !== 'image/jpeg' && file.type !== 'image/png') return;
 
       let formData = new FormData();
       formData.append('file', file);
       setLoading(true);
 
-      const res = await axios.post('https://yolo-server.onrender.com/api/upload', formData, {
-        headers: {
-          'content-type': 'multipart/form-data',
-          Authorization: token,
-        },
-      });
-      
+      const res = await axios.post(
+        'http://localhost:5001/api/upload',
+        formData,
+        {
+          headers: {
+            'content-type': 'multipart/form-data',
+            Authorization: token,
+          },
+        }
+      );
+
       setLoading(false);
       setImage01(res.data);
     } catch (err) {
-      alert.show(
-        <div style={{ fontSize: '12px' }}>{err.response.data.msg}</div>,
-        { type: types.ERROR }
-      );
+      toast.error(err.response?.data?.msg || err.message);
     }
   };
   const handleUpload2 = async (e) => {
     e.preventDefault();
     try {
-      if (!isAdmin)
-        return alert.show(
-          <div style={{ fontSize: '12px' }}>
-            Không có quyền truy nhập tài nguyên
-          </div>,
-          { type: types.ERROR }
-        );
+      if (!isAdmin) return;
       const file = e.target.files[0];
-      if (!file)
-        return alert.show(
-          <div style={{ fontSize: '12px' }}>
-            Không có file nào được tải lên
-          </div>,
-          { type: types.ERROR }
-        );
+      if (!file) return;
 
-      if (file.size > 1024 * 1024)
-        return alert.show(
-          <div style={{ fontSize: '12px' }}>Kích thước quá lớn</div>,
-          { type: types.ERROR }
-        );
+      if (file.size > 1024 * 1024) return;
 
-      if (file.type !== 'image/jpeg' && file.type !== 'image/png')
-        return alert.show(
-          <div style={{ fontSize: '12px' }}>Định dạng file không hợp lệ</div>,
-          { type: types.ERROR }
-        );
+      if (file.type !== 'image/jpeg' && file.type !== 'image/png') return;
 
       let formData = new FormData();
       formData.append('file', file);
       setLoading2(true);
-      const res = await axios.post('https://yolo-server.onrender.com/api/upload', formData, {
-        headers: {
-          'content-type': 'multipart/form-data',
-          Authorization: token,
-        },
-      });
+      const res = await axios.post(
+        'http://localhost:5001/api/upload',
+        formData,
+        {
+          headers: {
+            'content-type': 'multipart/form-data',
+            Authorization: token,
+          },
+        }
+      );
       setLoading2(false);
       setImage02(res.data);
     } catch (err) {
-      alert.show(
-        <div style={{ fontSize: '12px' }}>{err.response.data.msg}</div>,
-        { type: types.ERROR }
-      );
+      toast.error(err.response?.data?.msg || err.message);
     }
   };
   const handleDestroy = async () => {
     try {
-      if (!isAdmin)
-        return alert.show(
-          <div style={{ fontSize: '12px' }}>
-            Không có quyền truy nhập tài nguyên
-          </div>,
-          { type: types.ERROR }
-        );
+      if (!isAdmin) return;
       setLoading(true);
       await axios.post(
-        'https://yolo-server.onrender.com/api/destroy',
+        'http://localhost:5001/api/destroy',
         { public_id: image01.public_id },
         {
           headers: { Authorization: token },
@@ -186,24 +142,15 @@ const CreateProduct = () => {
       setLoading(false);
       setImage01(false);
     } catch (err) {
-      alert.show(
-        <div style={{ fontSize: '12px' }}>{err.response.data.msg}</div>,
-        { type: types.ERROR }
-      );
+      toast.error(err.response?.data?.msg || err.message);
     }
   };
   const handleDestroy2 = async () => {
     try {
-      if (!isAdmin)
-        return alert.show(
-          <div style={{ fontSize: '12px' }}>
-            Không có quyền truy nhập tài nguyên
-          </div>,
-          { type: types.ERROR }
-        );
+      if (!isAdmin) return;
       setLoading2(true);
       await axios.post(
-        'https://yolo-server.onrender.com/api/destroy',
+        'http://localhost:5001/api/destroy',
         { public_id: image02.public_id },
         {
           headers: { Authorization: token },
@@ -211,12 +158,7 @@ const CreateProduct = () => {
       );
       setLoading2(false);
       setImage02(false);
-    } catch (err) {
-      alert.show(
-        <div style={{ fontSize: '12px' }}>{err.response.data.msg}</div>,
-        { type: types.ERROR }
-      );
-    }
+    } catch (err) {}
   };
   const images = { image01, image02 };
   const handleChangeInput = (e) => {
@@ -230,25 +172,25 @@ const CreateProduct = () => {
     e.preventDefault();
     try {
       if (!isAdmin) return alert('Bạn không có quyền này');
-      if (!image01 || !image02 || selectedColor.length===0 || selectedSize.length ===0)
-        return alert.show(
-          <div style={{ fontSize: '12px' }}>
-            Cung cấp đầy đủ thông tin sản phẩm
-          </div>,
-          { type: types.ERROR }
-        );
+      if (
+        !image01 ||
+        !image02 ||
+        selectedColor.length === 0 ||
+        selectedSize.length === 0
+      )
+        return;
       if (onEdit) {
         await axios.put(
-          `https://yolo-server.onrender.com/api/products/${product._id}`,
-          { ...product, ...images, color,size },
+          `http://localhost:5001/api/products/${product._id}`,
+          { ...product, ...images, color, size },
           {
             headers: { Authorization: token },
           }
         );
       } else {
         await axios.post(
-          'https://yolo-server.onrender.com/api/products',
-          { ...product, ...images, color,size },
+          'http://localhost:5001/api/products',
+          { ...product, ...images, color, size },
           {
             headers: { Authorization: token },
           }
@@ -257,10 +199,7 @@ const CreateProduct = () => {
       setCallback(!callback);
       navigate('/');
     } catch (err) {
-      alert.show(
-        <div style={{ fontSize: '12px' }}>{err.response.data.msg}</div>,
-        { type: types.ERROR }
-      );
+      toast.error(err.response?.data?.msg || err.message);
     }
   };
 
@@ -349,7 +288,7 @@ const CreateProduct = () => {
           </div>
         </div>
         <form onSubmit={handleSubmit}>
-          <h1>{t("Thông tin sản phẩm")}</h1>
+          <h1>{t('Thông tin sản phẩm')}</h1>
 
           <div className="row">
             <label htmlFor="product_id">ID </label>
@@ -365,7 +304,7 @@ const CreateProduct = () => {
           </div>
 
           <div className="row">
-            <label htmlFor="title">{t("Tên")}</label>
+            <label htmlFor="title">{t('Tên')}</label>
             <input
               type="text"
               name="title"
@@ -376,7 +315,7 @@ const CreateProduct = () => {
             />
           </div>
           <div className="row">
-            <label htmlFor="discount">{t("Giảm giá")} (%)</label>
+            <label htmlFor="discount">{t('Giảm giá')} (%)</label>
             <input
               type="number"
               name="discount"
@@ -386,7 +325,7 @@ const CreateProduct = () => {
             />
           </div>
           <div className="row">
-            <label htmlFor="old_price">{t("Giá cũ")} ($)</label>
+            <label htmlFor="old_price">{t('Giá cũ')} ($)</label>
             <input
               type="number"
               name="old_price"
@@ -399,7 +338,7 @@ const CreateProduct = () => {
             className="row"
             style={{ position: 'relative' }}
           >
-            <label htmlFor="price">{t("Giá")} ($)</label>
+            <label htmlFor="price">{t('Giá')} ($)</label>
             <input
               type="number"
               name="price"
@@ -415,7 +354,7 @@ const CreateProduct = () => {
             ) : null}
           </div>
           <div className="row">
-            <label htmlFor="color">{t("Màu")}</label>
+            <label htmlFor="color">{t('Màu')}</label>
             <MultiSelect
               options={options}
               value={selectedColor}
@@ -424,7 +363,7 @@ const CreateProduct = () => {
             />
           </div>
           <div className="row">
-            <label htmlFor="size">{t("Kích cỡ")}</label>
+            <label htmlFor="size">{t('Kích cỡ')}</label>
             <MultiSelect
               options={option1}
               value={selectedSize}
@@ -433,7 +372,7 @@ const CreateProduct = () => {
             />
           </div>
           <div className="row">
-            <label htmlFor="description">{t("Mô tả")}</label>
+            <label htmlFor="description">{t('Mô tả')}</label>
             <textarea
               type="text"
               name="description"
@@ -445,13 +384,13 @@ const CreateProduct = () => {
             />
           </div>
           <div className="row">
-            <label htmlFor="categories">{t("Danh mục")}: </label>
+            <label htmlFor="categories">{t('Danh mục')}: </label>
             <select
               name="category"
               value={product.category}
               onChange={handleChangeInput}
             >
-              <option value="">{t("Chọn danh mục cho sản phẩm")}</option>
+              <option value="">{t('Chọn danh mục cho sản phẩm')}</option>
               {categories.map((category) => (
                 <option
                   value={category._id}
@@ -463,9 +402,12 @@ const CreateProduct = () => {
             </select>
           </div>
 
-          <button type="submit">{onEdit ? `${t('Cập nhật')}`: `${t('Tạo')}`}</button>
+          <button type="submit">
+            {onEdit ? `${t('Cập nhật')}` : `${t('Tạo')}`}
+          </button>
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 };

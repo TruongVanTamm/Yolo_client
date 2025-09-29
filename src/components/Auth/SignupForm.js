@@ -3,11 +3,10 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useAlert } from 'react-alert';
-import { types } from 'react-alert';
 import { Helmet } from 'react-helmet';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const SignupForm = () => {
-  const alert = useAlert();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -40,21 +39,15 @@ const SignupForm = () => {
     }),
     onSubmit: async (values) => {
       try {
-        await axios.post('https://yolo-server.onrender.com/user/register', {
+        await axios.post('http://localhost:5001/user/register', {
           ...values,
         });
         localStorage.setItem('firstLogin', true);
-        alert.show(
-          <div style={{ fontSize: '12px' }}>
-            Chúng tôi vừa gửi một email xác nhận cho bạn, vui lòng xác nhận để
-            hoàn tất đăng kí
-          </div>,
-          { type: types.INFO }
+        toast.success(
+          'Chúng tôi vừa gửi một email xác nhận cho bạn, vui lòng xác nhận để hoàn tất đăng kí'
         );
       } catch (err) {
-        alert.show(
-          <div style={{ fontSize: '12px' }}>{err.response.data.msg}</div>
-        );
+        toast.error(err.response?.data?.msg || err.message);
       }
     },
   });
@@ -137,6 +130,7 @@ const SignupForm = () => {
           <button type="submit"> Tiếp tục </button>
         </div>
       </form>
+      <ToastContainer />
     </section>
   );
 };

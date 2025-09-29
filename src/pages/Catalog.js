@@ -28,7 +28,7 @@ const Catalog = () => {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `https://yolo-server.onrender.com/api/products?limit=${page * 6}`
+        `http://localhost:5001/api/products?limit=${page * 6}`
       );
       setProducts(res.data.products);
     };
@@ -71,14 +71,14 @@ const Catalog = () => {
     try {
       setLoading(true);
       const destroyImg = axios.post(
-        'https://yolo-server.onrender.com/api/destroyAll',
+        'http://localhost:5001/api/destroyAll',
         { ...public_id },
         {
           headers: { Authorization: token },
         }
       );
       const deleteProduct = axios.delete(
-        `https://yolo-server.onrender.com/api/products/${id}`,
+        `http://localhost:5001/api/products/${id}`,
         {
           headers: { Authorization: token },
         }

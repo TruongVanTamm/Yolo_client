@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { isEmail } from '../utils/Validation';
-import { useAlert, types } from 'react-alert';
+import { toast } from 'react-toastify';
 import Button from '../Button/Button';
 import { Link } from 'react-router-dom';
 const initialState = {
@@ -9,7 +9,6 @@ const initialState = {
 };
 
 function ForgotPassword() {
-  const alert = useAlert();
   const [data, setData] = useState(initialState);
 
   const { email } = data;
@@ -21,28 +20,17 @@ function ForgotPassword() {
   const forgotPassword = async () => {
     if (!isEmail(email)) {
       setData({ ...data });
-      return alert.show(
-        <div style={{ fontSize: '12px' }}>Email không hợp lệ</div>,
-        { type: types.ERROR }
-      );
+      return toast.error('Email không hợp lệ');
     }
 
     try {
-      const res = await axios.post(
-        'https://yolo-server.onrender.com/user/forgot',
-        { email }
-      );
+      const res = await axios.post('http://localhost:5001/user/forgot', {
+        email,
+      });
       setData({ ...data });
-      return alert.show(
-        <div style={{ fontSize: '12px' }}>{res.data.msg} </div>,
-        { type: types.INFO }
-      );
+      return toast.info(res.data.msg);
     } catch (err) {
-      err.response.data.msg &&
-        alert.show(
-          <div style={{ fontSize: '12px' }}>{err.response.data.msg}</div>,
-          { type: types.ERROR }
-        );
+      err.response.data.msg && toast.error(err.response.data.msg);
       setData({ ...data });
     }
   };

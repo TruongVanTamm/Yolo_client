@@ -52,7 +52,7 @@ const Header = () => {
     menuLeft.current.classList.toggle('active');
   };
   const logoutUser = async () => {
-    await axios.get('https://yolo-server.onrender.com/user/logout');
+    await axios.get('http://localhost:5001/user/logout');
 
     localStorage.removeItem('firstLogin');
 

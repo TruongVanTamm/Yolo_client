@@ -2,10 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { GlobalState } from '../../GlobalState';
-import { useAlert, types } from 'react-alert';
+import { toast } from 'react-toastify';
 
 function EditUser() {
-  const alert = useAlert();
   const { id } = useParams();
   const navigate = useNavigate();
   const [editUser, setEditUser] = useState([]);
@@ -31,7 +30,7 @@ function EditUser() {
     try {
       if (num % 2 !== 0) {
         const res = await axios.patch(
-          `https://yolo-server.onrender.com/user/update_role/${editUser._id}`,
+          `http://localhost:5001/user/update_role/${editUser._id}`,
           {
             role: checkAdmin ? 1 : 0,
           },
@@ -40,16 +39,12 @@ function EditUser() {
           }
         );
 
-        alert.show(<div style={{ fontSize: '12px' }}>{res.data.msg}</div>, {
-          type: types.INFO,
-        });
+        toast.info(res.data.msg);
         setNum(0);
         navigate('/profile');
       }
     } catch (err) {
-      alert.show(<div style={{ fontSize: '12px' }}>{err.res.data.msg}</div>, {
-        type: types.ERROR,
-      });
+      toast.error(err.res.data.msg);
     }
   };
 

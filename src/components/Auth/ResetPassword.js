@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { isLength, isMatch } from '../utils/Validation';
 import Button from '../Button/Button';
-import { useAlert, types } from 'react-alert';
+import { toast } from 'react-toastify';
 
 const initialState = {
   password: '',
@@ -11,13 +11,12 @@ const initialState = {
 };
 
 function ResetPassword() {
-  const alert = useAlert();
   const [data, setData] = useState(initialState);
   const { token } = useParams();
   const { password, cf_password } = data;
 
   const logoutUser = async () => {
-    await axios.get('https://yolo-server.onrender.com/user/logout');
+    await axios.get('http://localhost:5001/user/logout');
 
     localStorage.removeItem('firstLogin');
 
@@ -34,27 +33,19 @@ function ResetPassword() {
       setData({
         ...data,
       });
-      return alert.show(
-        <div style={{ fontSize: '12px' }}>
-          Mật khẩu quá ngắn, tối thiểu 8 kí tự
-        </div>,
-        { type: types.ERROR }
-      );
+      return toast.error('Mật khẩu quá ngắn, tối thiểu 8 kí tự');
     }
 
     if (!isMatch(password, cf_password)) {
       setData({
         ...data,
       });
-      return alert.show(
-        <div style={{ fontSize: '12px' }}>Mật khẩu không trùng khớp</div>,
-        { type: types.ERROR }
-      );
+      return toast.error('Mật khẩu không trùng khớp');
     }
 
     try {
       const res = await axios.post(
-        'https://yolo-server.onrender.com/user/reset',
+        'http://localhost:5001/user/reset',
         { password },
         {
           headers: { Authorization: token },
@@ -64,16 +55,9 @@ function ResetPassword() {
         ...data,
       });
       logoutUser();
-      return alert.show(
-        <div style={{ fontSize: '12px' }}>{res.data.msg}</div>,
-        { type: types.INFO }
-      );
+      return toast.info(res.data.msg);
     } catch (err) {
-      err.response.data.msg &&
-        alert.show(
-          <div style={{ fontSize: '12px' }}>{err.response.data.msg}</div>,
-          { type: types.ERROR }
-        );
+      err.response.data.msg && toast.error(err.response.data.msg);
       setData({ ...data });
     }
   };

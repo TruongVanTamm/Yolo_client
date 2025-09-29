@@ -34,9 +34,7 @@ const Home = () => {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `https://yolo-server.onrender.com/api/products?limit=${
-          page * 6
-        }&${sort}`
+        `http://localhost:5001/api/products?limit=${page * 6}&${sort}`
       );
       setSort('sort=-sold');
       setProduct1(res.data.products);
@@ -47,9 +45,7 @@ const Home = () => {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `https://yolo-server.onrender.com/api/products?limit=${
-          page1 * 12
-        }&${sort1}`
+        `http://localhost:5001/api/products?limit=${page1 * 12}&${sort1}`
       );
       setSort1('');
       setProduct2(res.data.products);
@@ -60,9 +56,7 @@ const Home = () => {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `https://yolo-server.onrender.com/api/products?limit=${
-          page2 * 6
-        }&${sort2}`
+        `http://localhost:5001/api/products?limit=${page2 * 6}&${sort2}`
       );
       setSort2('sort=oldest');
       setProduct3(res.data.products);

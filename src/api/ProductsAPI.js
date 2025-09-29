@@ -13,7 +13,7 @@ function ProductsAPI() {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `https://yolo-server.onrender.com/api/products?limit=${
+        `http://localhost:5001/api/products?limit=${
           page * 6
         }&${category}&${sort}&title[regex]=${search}`
       );
@@ -24,18 +24,16 @@ function ProductsAPI() {
   }, [callback, category, sort, search, page]);
   useEffect(() => {
     const getSlider = async () => {
-      const res = await axios.get(
-        `https://yolo-server.onrender.com/api/hero-slider`
-      );
+      const res = await axios.get(`http://localhost:5001/api/hero-slider`);
 
       setSlider(res.data);
     };
     getSlider();
   }, []);
-  
+
   return {
     products: [products, setProducts],
-    slider:  [slider, setSlider] ,
+    slider: [slider, setSlider],
     callback: [callback, setCallback],
     category: [category, setCategory],
     sort: [sort, setSort],

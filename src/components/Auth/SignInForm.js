@@ -3,10 +3,10 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useAlert } from 'react-alert';
 import { Helmet } from 'react-helmet';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const SignInForm = () => {
-  const alert = useAlert();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -30,15 +30,15 @@ const SignInForm = () => {
     }),
     onSubmit: async (values) => {
       try {
-        await axios.post('https://yolo-server.onrender.com/user/login', { ...values });
+        await axios.post('http://localhost:5001/user/login', {
+          ...values,
+        });
 
         localStorage.setItem('firstLogin', true);
 
         window.location.href = '/';
       } catch (err) {
-        alert.show(
-          <div style={{ fontSize: '12px' }}>{err.response.data.msg}</div>
-        );
+        toast.error(err.response?.data?.msg || err.message);
       }
     },
   });
@@ -104,6 +104,7 @@ const SignInForm = () => {
           <button type="submit"> Tiếp tục </button>
         </div>
       </form>
+      <ToastContainer />
     </section>
   );
 };

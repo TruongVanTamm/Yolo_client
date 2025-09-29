@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import { GlobalState } from '../../GlobalState';
 import { useNavigate } from 'react-router-dom';
-import { useAlert, types } from 'react-alert';
+import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 const ProductView = (props) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const alert = useAlert();
   const state = useContext(GlobalState);
   const addCart = state.userAPI.addCart;
   const [previewImg, setPreviewImg] = useState(props.image01);
@@ -65,7 +64,9 @@ const ProductView = (props) => {
             descriptionExpand ? 'expand ' : ''
           }`}
         >
-          <div className="product__description__title">{t("Chi tiết sản phẩm")}</div>
+          <div className="product__description__title">
+            {t('Chi tiết sản phẩm')}
+          </div>
           <div
             className="product__description__content"
             dangerouslySetInnerHTML={{ __html: t(props.description) }}
@@ -83,11 +84,11 @@ const ProductView = (props) => {
       <div className="product__info">
         <div className="product__info__title">{props.name}</div>
         <div className="product__info__item">
-          <span className="product__info__item__title">{t("Giá tiền")}</span>
+          <span className="product__info__item__title">{t('Giá tiền')}</span>
           <span className="product__info__item__price">${props.price}</span>
         </div>
         <div className="product__info__item">
-          <span className="product__info__item__title">{t("Màu sắc")}</span>
+          <span className="product__info__item__title">{t('Màu sắc')}</span>
           <span className="product__info__item__list">
             {props.color.map((item, index) => {
               return (
@@ -105,7 +106,7 @@ const ProductView = (props) => {
           </span>
         </div>
         <div className="product__info__item">
-          <span className="product__info__item__title">{t("Kích cỡ")}</span>
+          <span className="product__info__item__title">{t('Kích cỡ')}</span>
           <span className="product__info__item__list">
             {props.size.map((item, index) => {
               return (
@@ -138,12 +139,7 @@ const ProductView = (props) => {
               if (size !== undefined && color !== undefined) {
                 addCart(added);
               } else {
-                alert.show(
-                  <div style={{ fontSize: '12px' }}>
-                    {t("Vui lòng chọn màu và kích thước")}
-                  </div>,
-                  { type: types.ERROR }
-                );
+                return;
               }
             }}
           >
@@ -153,21 +149,17 @@ const ProductView = (props) => {
             size="sm"
             icon="bx bx-cart-add"
             animate={true}
-            o    onClick={() => {
+            o
+            onClick={() => {
               if (size !== undefined && color !== undefined) {
                 addCart(added);
-                return navigate('/cart')
+                return navigate('/cart');
               } else {
-                alert.show(
-                  <div style={{ fontSize: '12px'}}>
-                      {t("Vui lòng chọn màu và kích thước")}
-                  </div>,
-                  { type: types.ERROR }
-                );
+                return;
               }
             }}
           >
-              {t('mua ngay')}
+            {t('mua ngay')}
           </Button>
         </div>
       </div>

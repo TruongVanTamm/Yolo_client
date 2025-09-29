@@ -17,7 +17,7 @@ function Categories() {
     try {
       if (onEdit) {
         const res = await axios.put(
-          `https://yolo-server.onrender.com/api/category/${id}`,
+          `http://localhost:5001/api/category/${id}`,
           { name: category },
           {
             headers: { Authorization: token },
@@ -25,7 +25,7 @@ function Categories() {
         );
       } else {
         const res = await axios.post(
-          'https://yolo-server.onrender.com/api/category',
+          'http://localhost:5001/api/category',
           { name: category },
           {
             headers: { Authorization: token },
@@ -49,7 +49,7 @@ function Categories() {
   const deleteCategory = async (id) => {
     try {
       const res = await axios.delete(
-        `https://yolo-server.onrender.com/api/category/${id}`,
+        `http://localhost:5001/api/category/${id}`,
         {
           headers: { Authorization: token },
         }

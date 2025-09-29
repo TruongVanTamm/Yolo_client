@@ -24,7 +24,7 @@ const Product = () => {
   }, []);
   useEffect(() => {
     const getProducts = async () => {
-      const res = await axios.get(`http://api.zhangwenxin.click/api/products`);
+      const res = await axios.get(`https://api.zhangwenxin.click/api/products`);
       setProducts(res.data.products);
     };
     getProducts();
@@ -32,7 +32,7 @@ const Product = () => {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `http://api.zhangwenxin.click/api/hero-slider`
+        `https://api.zhangwenxin.click/api/hero-slider`
       );
       setSlider(res.data);
     };

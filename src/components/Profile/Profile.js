@@ -30,7 +30,7 @@ function Profile() {
       const getUsers = async () => {
         try {
           const res = await axios.get(
-            'http://api.zhangwenxin.click/user/all_infor',
+            'https://api.zhangwenxin.click/user/all_infor',
             {
               headers: { Authorization: token },
             }
@@ -80,7 +80,7 @@ function Profile() {
 
       setLoading(true);
       const res = await axios.post(
-        'http://api.zhangwenxin.click/api/upload_avatar',
+        'https://api.zhangwenxin.click/api/upload_avatar',
         formData,
         {
           headers: {
@@ -99,7 +99,7 @@ function Profile() {
   const updateInfor = () => {
     try {
       axios.patch(
-        'http://api.zhangwenxin.click/user/update',
+        'https://api.zhangwenxin.click/user/update',
         {
           name: name ? name : user.name,
           avatar: avatar ? avatar : user.avatar,
@@ -141,7 +141,7 @@ function Profile() {
 
     try {
       axios.post(
-        'http://api.zhangwenxin.click/user/reset',
+        'https://api.zhangwenxin.click/user/reset',
         { password },
         {
           headers: { Authorization: token },
@@ -168,9 +168,12 @@ function Profile() {
       if (user._id !== id) {
         if (window.confirm('Bạn muốn xóa người dùng này ?')) {
           setLoading(true);
-          await axios.delete(`http://api.zhangwenxin.click/user/delete/${id}`, {
-            headers: { Authorization: token },
-          });
+          await axios.delete(
+            `https://api.zhangwenxin.click/user/delete/${id}`,
+            {
+              headers: { Authorization: token },
+            }
+          );
           setLoading(false);
           setCallback(!callback);
         }

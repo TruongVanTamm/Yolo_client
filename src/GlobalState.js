@@ -15,7 +15,7 @@ export const DataProvider = ({ children }) => {
     if (firstLogin) {
       const refreshToken = async () => {
         const res = await axios.get(
-          'http://api.zhangwenxin.click/user/refresh_token'
+          'https://api.zhangwenxin.click/user/refresh_token'
         );
         setToken(res.data.access_token);
 

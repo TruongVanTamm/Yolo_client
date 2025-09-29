@@ -82,7 +82,7 @@ const CreateProduct = () => {
       setLoading(true);
 
       const res = await axios.post(
-        'http://api.zhangwenxin.click/api/upload',
+        'https://api.zhangwenxin.click/api/upload',
         formData,
         {
           headers: {
@@ -113,7 +113,7 @@ const CreateProduct = () => {
       formData.append('file', file);
       setLoading2(true);
       const res = await axios.post(
-        'http://api.zhangwenxin.click/api/upload',
+        'https://api.zhangwenxin.click/api/upload',
         formData,
         {
           headers: {
@@ -133,7 +133,7 @@ const CreateProduct = () => {
       if (!isAdmin) return;
       setLoading(true);
       await axios.post(
-        'http://api.zhangwenxin.click/api/destroy',
+        'https://api.zhangwenxin.click/api/destroy',
         { public_id: image01.public_id },
         {
           headers: { Authorization: token },
@@ -150,7 +150,7 @@ const CreateProduct = () => {
       if (!isAdmin) return;
       setLoading2(true);
       await axios.post(
-        'http://api.zhangwenxin.click/api/destroy',
+        'https://api.zhangwenxin.click/api/destroy',
         { public_id: image02.public_id },
         {
           headers: { Authorization: token },
@@ -181,7 +181,7 @@ const CreateProduct = () => {
         return;
       if (onEdit) {
         await axios.put(
-          `http://api.zhangwenxin.click/api/products/${product._id}`,
+          `https://api.zhangwenxin.click/api/products/${product._id}`,
           { ...product, ...images, color, size },
           {
             headers: { Authorization: token },
@@ -189,7 +189,7 @@ const CreateProduct = () => {
         );
       } else {
         await axios.post(
-          'http://api.zhangwenxin.click/api/products',
+          'https://api.zhangwenxin.click/api/products',
           { ...product, ...images, color, size },
           {
             headers: { Authorization: token },

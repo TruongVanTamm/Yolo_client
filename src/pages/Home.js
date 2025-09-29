@@ -34,7 +34,7 @@ const Home = () => {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `http://api.zhangwenxin.click/api/products?limit=${page * 6}&${sort}`
+        `https://api.zhangwenxin.click/api/products?limit=${page * 6}&${sort}`
       );
       setSort('sort=-sold');
       setProduct1(res.data.products);
@@ -45,7 +45,9 @@ const Home = () => {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `http://api.zhangwenxin.click/api/products?limit=${page1 * 12}&${sort1}`
+        `https://api.zhangwenxin.click/api/products?limit=${
+          page1 * 12
+        }&${sort1}`
       );
       setSort1('');
       setProduct2(res.data.products);
@@ -56,7 +58,7 @@ const Home = () => {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `http://api.zhangwenxin.click/api/products?limit=${page2 * 6}&${sort2}`
+        `https://api.zhangwenxin.click/api/products?limit=${page2 * 6}&${sort2}`
       );
       setSort2('sort=oldest');
       setProduct3(res.data.products);

@@ -13,7 +13,7 @@ function OrderHistory() {
       const getHistory = async () => {
         if (isAdmin) {
           const res = await axios.get(
-            'http://api.zhangwenxin.click/api/payment',
+            'https://api.zhangwenxin.click/api/payment',
             {
               headers: { Authorization: token },
             }
@@ -21,7 +21,7 @@ function OrderHistory() {
           setHistory(res.data);
         } else {
           const res = await axios.get(
-            'http://api.zhangwenxin.click/user/history',
+            'https://api.zhangwenxin.click/user/history',
             {
               headers: { Authorization: token },
             }

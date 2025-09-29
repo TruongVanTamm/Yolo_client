@@ -28,7 +28,7 @@ const Catalog = () => {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `http://api.zhangwenxin.click/api/products?limit=${page * 6}`
+        `https://api.zhangwenxin.click/api/products?limit=${page * 6}`
       );
       setProducts(res.data.products);
     };
@@ -71,14 +71,14 @@ const Catalog = () => {
     try {
       setLoading(true);
       const destroyImg = axios.post(
-        'http://api.zhangwenxin.click/api/destroyAll',
+        'https://api.zhangwenxin.click/api/destroyAll',
         { ...public_id },
         {
           headers: { Authorization: token },
         }
       );
       const deleteProduct = axios.delete(
-        `http://api.zhangwenxin.click/api/products/${id}`,
+        `https://api.zhangwenxin.click/api/products/${id}`,
         {
           headers: { Authorization: token },
         }

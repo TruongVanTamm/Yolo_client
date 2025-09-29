@@ -13,7 +13,7 @@ function ProductsAPI() {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(
-        `http://api.zhangwenxin.click/api/products?limit=${
+        `https://api.zhangwenxin.click/api/products?limit=${
           page * 6
         }&${category}&${sort}&title[regex]=${search}`
       );
@@ -25,7 +25,7 @@ function ProductsAPI() {
   useEffect(() => {
     const getSlider = async () => {
       const res = await axios.get(
-        `http://api.zhangwenxin.click/api/hero-slider`
+        `https://api.zhangwenxin.click/api/hero-slider`
       );
 
       setSlider(res.data);

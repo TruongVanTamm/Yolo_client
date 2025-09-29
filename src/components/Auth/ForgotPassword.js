@@ -24,9 +24,12 @@ function ForgotPassword() {
     }
 
     try {
-      const res = await axios.post('http://api.zhangwenxin.click/user/forgot', {
-        email,
-      });
+      const res = await axios.post(
+        'https://api.zhangwenxin.click/user/forgot',
+        {
+          email,
+        }
+      );
       setData({ ...data });
       return toast.info(res.data.msg);
     } catch (err) {

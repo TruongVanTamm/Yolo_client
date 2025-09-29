@@ -40,7 +40,7 @@ function Profile() {
       getUsers();
     } else {
     }
-  }, [loading, isAdmin, setUsers, alert, token]);
+  }, [loading, isAdmin, setUsers, token]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });

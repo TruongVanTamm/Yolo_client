@@ -21,7 +21,7 @@ const SignIn = () => {
       };
       activationEmail();
     }
-  }, [activation_token, alert]);
+  }, [activation_token]);
   return (
     <div className="Signup_container__main">
       <SignInForm></SignInForm>

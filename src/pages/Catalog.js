@@ -88,9 +88,7 @@ const Catalog = () => {
       await deleteProduct;
       setCallback(!callback);
       setLoading(false);
-    } catch (err) {
-      alert(err.response.data.msg);
-    }
+    } catch (err) {}
   };
   if (loading)
     return (

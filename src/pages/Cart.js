@@ -84,7 +84,6 @@ const Cart = () => {
     );
     setCart([]);
     addToCart([]);
-    alert('Bạn đã đặt hàng thành công.');
   };
   if (cart.length === 0)
     return (

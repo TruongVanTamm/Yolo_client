@@ -30,7 +30,7 @@ function UserAPI(token) {
       };
       getUser();
     }
-  }, [token, alert]);
+  }, [token]);
   useEffect(() => {
     if (isAdmin) {
       const getUsers = async () => {
@@ -47,7 +47,7 @@ function UserAPI(token) {
       getUsers();
     } else {
     }
-  }, [token, alert, isAdmin]);
+  }, [token, isAdmin]);
   const addCart = async (product) => {
     if (!isLogged) return toast.error(t('Yêu cầu đăng nhập'));
     const check = cart.every((item) => {

@@ -35,9 +35,7 @@ function Categories() {
       setOnEdit(false);
       setCategory('');
       setCallback(!callback);
-    } catch (err) {
-      alert(err.response.data.msg);
-    }
+    } catch (err) {}
   };
 
   const editCategory = async (id, name) => {
@@ -55,9 +53,7 @@ function Categories() {
         }
       );
       setCallback(!callback);
-    } catch (err) {
-      alert(err.response.data.msg);
-    }
+    } catch (err) {}
   };
   useEffect(() => {
     window.scrollTo({
